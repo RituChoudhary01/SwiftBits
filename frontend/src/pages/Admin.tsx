@@ -28,10 +28,13 @@ function Admin() {
           },
         }
       );
-      setRestaurants(data.Restaurants);
-      setRiders(response.data.riders);
+      // backend returns key "restauraunts" (misspelled) — read it defensively
+      setRestaurants(data.restauraunts || data.Restaurants || data.restaurants || []);
+      setRiders(response.data.riders || []);
     } catch (error) {
       console.log(error);
+      setRestaurants([]);
+      setRiders([]);
     } finally {
       setLoading(false);
     }
