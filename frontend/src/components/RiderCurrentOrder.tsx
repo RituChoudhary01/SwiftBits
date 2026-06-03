@@ -23,9 +23,11 @@ function RiderCurrentOrder({ order, onStatusUpdate }: Props) {
       toast.success("Order status updated");
       onStatusUpdate();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message || "Failed to update status");
     }
   };
+
+  const address = order?.deliveryAddress;
 
   return (
     <div className="rounded-xl bg-white shadow-sm p-4 space-y-4">
@@ -37,7 +39,7 @@ function RiderCurrentOrder({ order, onStatusUpdate }: Props) {
         </p>
 
         <p>
-          <b>Drop:</b> {order.deliveryAddress.formattedAddress}
+          <b>Drop:</b> {address?.formattedAddress ?? "—"}
         </p>
 
         <p>
@@ -56,16 +58,16 @@ function RiderCurrentOrder({ order, onStatusUpdate }: Props) {
         </p>
       </div>
 
-      {order.deliveryAddress.mobile && (
+      {address?.mobile && (
         <div className="flex items-center justify-between rounded-lg border p-3">
           <div className="text-sm">
             <p className="text-gray-500">Customer Phone</p>
             <p className="font-semibold text-gray-800">
-              {order.deliveryAddress.mobile}
+              {address.mobile}
             </p>
           </div>
           <a
-            href={`tel:${order.deliveryAddress.mobile}`}
+            href={`tel:${address.mobile}`}
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-semibold"
           >
             Call

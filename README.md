@@ -213,11 +213,14 @@ Each backend microservice is **containerized with Docker** (every service ships 
 
 ---
 
+<<<<<<< HEAD
 ## Photo
 
 
 
 
+=======
+>>>>>>> 9a106f0 (add a versal file)
 ## ⚙️ Getting Started
 
 ### Prerequisites

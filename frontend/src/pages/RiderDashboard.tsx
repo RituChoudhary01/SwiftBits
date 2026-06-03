@@ -23,9 +23,16 @@ interface IRider {
 }
 
 function RiderDashboard() {
-  const { user } = useAppData();
+  const { user, setUser, setIsAuth } = useAppData();
   const { socket } = useSocket();
   const { play } = useSound();
+
+  const logoutHandler = () => {
+    localStorage.setItem("token", "");
+    setUser(null);
+    setIsAuth(false);
+    toast.success("Logged out successfully");
+  };
   const [profile, setProfile] = useState<IRider | null>(null);
   const [loading, setLoading] = useState(true);
   const [toggling, setToggling] = useState(false);
@@ -242,6 +249,16 @@ function RiderDashboard() {
               {toggling ? "Updating..." : profile.isAvailable ? "Go Offline" : "Go Online"}
             </button>
           )}
+
+          {/* Logout — disabled while on an active delivery */}
+          <button
+            onClick={logoutHandler}
+            disabled={!!currentOrder}
+            title={currentOrder ? "Finish your current delivery before logging out" : "Logout"}
+            className="w-full py-2 rounded-lg border border-[#E23744] text-[#E23744] font-semibold hover:bg-red-50 transition disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Logout
+          </button>
         </div>
       </div>
 
