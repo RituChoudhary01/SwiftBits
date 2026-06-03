@@ -12,7 +12,7 @@ export { authService, restaurantService, utilsService, realtimeService, riderSer
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId="943535502763-4p110db19h4uqupd4ncvjdmgth9hpffh.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="786836782102-hqr4k1v2p4qs0tr0p0kri4salptua1bl.apps.googleusercontent.com">
       <AppProvider>
         <SocketProvider>
           <App />
